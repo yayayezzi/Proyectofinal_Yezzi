@@ -4,6 +4,7 @@ from .models import Jugador
 from django.shortcuts import render, redirect
 from Basquet2023_DatosApp.forms import JugadorForm
 from django.contrib.auth.decorators import login_required
+from .models import Liga, Equipo, Jugador
 
 
 
@@ -35,3 +36,19 @@ def agregar_jugador(request):
         form = JugadorForm()
     
     return render(request, 'agregar_jugador.html', {'form': form})
+
+def listar_equipos(request):
+    equipos = Equipo.objects.all()
+    return render(request, 'equipos.html', {'equipos': equipos})
+
+def listar_jugadores(request):
+    jugadores = Jugador.objects.all()
+    return render(request, 'jugadores.html', {'jugadores': jugadores})
+
+def listar_ligas(request):
+    ligas = Liga.objects.all()
+    return render(request, 'ligas.html', {'ligas': ligas})
+
+def usuario(request):
+    # Lógica para la vista de usuario
+    return render(request, 'usuario.html')

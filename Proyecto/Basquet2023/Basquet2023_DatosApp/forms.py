@@ -2,13 +2,6 @@ from django import forms
 from .models import Jugador
 from django.shortcuts import render
 
-class JugadorForm(forms.ModelForm):
-    class Meta:
-        model = Jugador
-        fields = ['nombre', 'edad']
-
-
-
 
 def buscar_jugador(request):
     if request.method == 'POST':
@@ -17,3 +10,8 @@ def buscar_jugador(request):
         return render(request, 'buscar_jugador.html', {'jugadores': jugadores})
     else:
         return render(request, 'buscar_jugador.html')
+    
+class JugadorForm(forms.ModelForm):
+    class Meta:
+        model = Jugador
+        fields = ['nombre', 'apellido', 'edad', 'altura', 'posicion', 'valor_mercado', 'foto']

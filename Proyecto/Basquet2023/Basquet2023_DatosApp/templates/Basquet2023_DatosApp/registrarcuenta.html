@@ -1,0 +1,99 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>crear Cuenta</title>
+    <link href="{% static 'Basquet2023_DatosApp/css/styles.css' %}" rel="stylesheet">
+    <style>
+        body {
+            background-color: #000;
+            color: #FFF;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .form-container {
+            width: 400px;
+            margin: 0 auto;
+            background-color: #333;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .form-container h2 {
+            font-size: 24px;
+            color: #FFA500;
+            margin-bottom: 20px;
+        }
+
+        .form-container label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #FFF;
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container select {
+            width: 100px;
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #CCC;
+            margin-bottom: 20px;
+        }
+
+        .form-container select {
+            height: 36px;
+        }
+
+        .form-container button[type="submit"] {
+            background-color: #FFA500;
+            color: #FFF;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-container button[type="submit"]:hover {
+            background-color: #FF8500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>registrar cuenta</h2>
+            <form method="POST" action="{% url 'registrarcuenta' %}">
+                {% csrf_token %}
+                <label for="id_nombre">Nombre:</label>
+                {{ form.nombre }}
+                
+                <label for="id_apellido">Apellido:</label>
+                {{ form.apellido }}
+                
+                <label for="id_telefono">Teléfono:</label>
+                {{ form.telefono }}
+                
+                <label for="id_email">Email:</label>
+                {{ form.email }}
+                
+                <label for="id_tipo_cuenta">Tipo de Cuenta:</label>
+                {{ form.tipo_cuenta }}
+                
+                <button type="submit">Registrarse</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

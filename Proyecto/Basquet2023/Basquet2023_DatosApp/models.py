@@ -1,32 +1,24 @@
 from django.db import models
 
-class Liga(models.Model):
-    nombre = models.CharField(max_length=100)
-    equipos = models.ManyToManyField('Equipo')
-
-    def __str__(self):
-        return self.nombre
-
-    def cantidad_equipos(self):
-        return self.equipos.count()
-
-class Equipo(models.Model):
-    nombre = models.CharField(max_length=100)
-    ciudad = models.CharField(max_length=100)
-    escudo = models.ImageField(upload_to='escudos/')
-
-    def __str__(self):
-        return self.nombre
-
-class Jugador(models.Model):
+class Cuenta(models.Model):
     nombre = models.CharField(max_length=100)
     apellido = models.CharField(max_length=100)
-    edad = models.IntegerField()
-    altura = models.DecimalField(max_digits=4, decimal_places=2)
-    posicion = models.CharField(max_length=50)
-    valor_mercado = models.DecimalField(max_digits=10, decimal_places=2)
-    equipo = models.ForeignKey(Equipo, on_delete=models.CASCADE)
-    foto = models.ImageField(upload_to='fotos_jugadores/')
+    telefono = models.CharField(max_length=20)
+    email = models.EmailField(unique=True)
+    TIPOS_CUENTA = (
+        ('periodista', 'Periodista'),
+        ('tecnico', 'Técnico'),
+        ('jugador', 'Jugador'),
+        ('aficionado', 'Aficionado'),
+    )
+    tipo_cuenta = models.CharField(max_length=50, choices=TIPOS_CUENTA)
 
     def __str__(self):
-        return f"{self.nombre} {self.apellido}"
+        return self.email
+
+class equipo(models.Model):
+    nombre = models.CharField(max_length=100)
+    ciudad = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nombre

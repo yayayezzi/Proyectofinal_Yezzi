@@ -1,17 +1,13 @@
 from django import forms
-from .models import Jugador
-from django.shortcuts import render
+from Basquet2023_DatosApp.models import Cuenta, equipo
 
-
-def buscar_jugador(request):
-    if request.method == 'POST':
-        nombre = request.POST['nombre']
-        jugadores = Jugador.objects.filter(nombre__icontains=nombre)
-        return render(request, 'buscar_jugador.html', {'jugadores': jugadores})
-    else:
-        return render(request, 'buscar_jugador.html')
-    
-class JugadorForm(forms.ModelForm):
+class RegistroCuentaForm(forms.ModelForm):
     class Meta:
-        model = Jugador
-        fields = ['nombre', 'apellido', 'edad', 'altura', 'posicion', 'valor_mercado', 'foto']
+        model = Cuenta
+        fields = ['nombre', 'apellido', 'telefono', 'email', 'tipo_cuenta']
+
+
+class equipoForm(forms.ModelForm):
+    class Meta:
+        model = equipo
+        fields = ['nombre', 'ciudad']
